@@ -8,5 +8,11 @@
     <artifactId>commerce_common</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+    </dependencies>
 </project>
