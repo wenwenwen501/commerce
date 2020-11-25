@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--此处以上部分  是查看mybatis文档   搜索mybatis-3-mapper.dtd复制的   声明部分-->
+<mapper namespace="mapper.MvcMapper">
+    <insert id="insertCommon" parameterType="service.query.baseQuery">
+        insert into common(create_by,create_date,last_update_by,last_update_date)
+        values
+        (#{createBy},#{createDate},#{lastUpdateBy},#{lastUpateDate})
+    </insert>
+</mapper>
