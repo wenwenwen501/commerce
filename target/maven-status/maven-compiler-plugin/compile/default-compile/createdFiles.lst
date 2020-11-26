@@ -1,0 +1,7 @@
+service/serviceImpl/MvcServiceImpl.class
+controller/common/ResponseVo.class
+controller/mvccontroller.class
+controller/dto/BaseDto.class
+service/query/baseQuery.class
+service/Mvcservice.class
+mapper/MvcMapper.class
