@@ -4,14 +4,11 @@ import controller.common.ResponseVo;
 import controller.dto.BaseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.Mvcservice;
 
-@RestController(value = "/hello")
-@ResponseBody
+@Controller
+@RequestMapping(value = "/hello")
 public class mvccontroller {
 
 //    @Autowired
@@ -23,7 +20,8 @@ public class mvccontroller {
 //        return new ResponseVo("10000", "success", "httpok");
 //    }
 
-    @GetMapping(value = "/mvc")
+    @RequestMapping(value = "/select.do", method = RequestMethod.GET)
+    @ResponseBody
     private ResponseVo hellomvc(){
         return new ResponseVo("10000", "success", "httpok");
     }

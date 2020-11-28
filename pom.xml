@@ -9,14 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-
-
     <properties>
         <springframework.version>5.3.0</springframework.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-
 
     <dependencies>
         <dependency>
@@ -53,22 +49,34 @@
 
     <build>
         <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.tomcat.maven</groupId>-->
+<!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
+<!--                <version>2.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>tomcat-run</id>-->
+<!--                        <goals>-->
+<!--                            <goal>exec-war-only</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>package</phase>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <executions>
-                    <execution>
-                        <id>tomcat-run</id>
-                        <goals>
-                            <goal>exec-war-only</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <path>/</path>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.2.v20170220</version>
+                <configuration>
+                    <httpConnector>
+                        <!-- jetty端口 -->
+                        <port>8080</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -81,6 +89,18 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>web</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
