@@ -20,7 +20,7 @@ public class mvccontroller {
 //        return new ResponseVo("10000", "success", "httpok");
 //    }
 
-    @RequestMapping(value = "/select.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/select.test", method = RequestMethod.GET)
     @ResponseBody
     private ResponseVo hellomvc(){
         return new ResponseVo("10000", "success", "httpok");

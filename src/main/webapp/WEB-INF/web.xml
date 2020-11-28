@@ -20,6 +20,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springDispatcherServlet</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>*.test</url-pattern>
     </servlet-mapping>
 </web-app>
