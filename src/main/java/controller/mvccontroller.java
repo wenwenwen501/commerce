@@ -1,13 +1,10 @@
 package controller;
 
 import controller.common.ResponseVo;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 @RequestMapping(value = "/hello")
 public class mvccontroller {
 
@@ -20,8 +17,7 @@ public class mvccontroller {
 //        return new ResponseVo("10000", "success", "httpok");
 //    }
 
-    @RequestMapping(value = "/select.test", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping(value = "/select.do")
     private ResponseVo hellomvc(){
         return new ResponseVo("10000", "success", "httpok");
     }
