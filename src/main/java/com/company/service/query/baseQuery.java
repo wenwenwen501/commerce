@@ -1,4 +1,4 @@
-package service.query;
+package com.company.service.query;
 
 import java.util.Date;
 

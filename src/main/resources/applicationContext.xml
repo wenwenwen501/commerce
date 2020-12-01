@@ -1,26 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-    <!--扫描包-->
-    <context:component-scan base-package="controller"
-                            use-default-filters="true">
-        <context:exclude-filter type="annotation"
-                                expression="org.springframework.stereotype.Controller" />
-        <context:exclude-filter type="annotation"
-                                expression="org.springframework.web.bind.annotation.ControllerAdvice" />
-    </context:component-scan>
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <!-- 配置国际化资源文件 -->
-    <bean id="messageSource"
-          class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="i18n"></property>
+    <!-- 自动扫描web包 ,将带有注解的类 纳入spring容器管理 -->
+    <context:component-scan base-package="com.company.*"></context:component-scan>
+    <!-- 引入jdbc配置文件 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:properties/db.properties</value>
+            </list>
+        </property>
     </bean>
+    <!-- dataSource 配置 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+    <!-- mybatis文件配置，扫描所有mapper文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:com/company/mapper/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="com.company.mapper"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+    <!-- 对dataSource 数据源进行事务管理 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource" />
+    <!-- 配置使Spring采用CGLIB代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+    <!-- 启用对事务注解的支持 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!-- 启用注解  -->
+    <context:annotation-config/>
 </beans>
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"-->
+<!--       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"-->
+<!--       xmlns:jpa="http://www.springframework.org/schema/data/jpa"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd-->
+<!--        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd-->
+<!--        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd-->
+<!--        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd-->
+<!--        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">-->
+<!--    &lt;!&ndash;扫描包&ndash;&gt;-->
+<!--    <context:component-scan base-package="com.company.controller"-->
+<!--                            use-default-filters="true">-->
+<!--        <context:exclude-filter type="annotation"-->
+<!--                                expression="org.springframework.stereotype.Controller" />-->
+<!--        <context:exclude-filter type="annotation"-->
+<!--                                expression="org.springframework.web.bind.annotation.ControllerAdvice" />-->
+<!--    </context:component-scan>-->
+
+<!--    <context:annotation-config />-->
+
+<!--    <context:property-placeholder location="classpath:properties/db.properties"/>-->
+
+<!--    &lt;!&ndash; 配置国际化资源文件 &ndash;&gt;-->
+<!--    <bean id="messageSource"-->
+<!--          class="org.springframework.context.support.ResourceBundleMessageSource">-->
+<!--        <property name="basename" value="i18n"></property>-->
+<!--    </bean>-->
+
+<!--    <bean id = "dataSource" class = "com.alibaba.druid.pool.DruidDataSource" destroy-method = "close" >-->
+<!--        <property name="driverClassName" value="${jdbc.driver}" />-->
+<!--        <property name="url" value="${jdbc.url}" />-->
+<!--        <property name="username" value="${jdbc.username}" />-->
+<!--        <property name="password" value="${jdbc.password}" />-->
+<!--    </bean>-->
+
+<!--&lt;!&ndash;    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash; 配置mybatis核心配置文件 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash;注意：classpath:是相对于同一个包路劲下的。比如applicationContext.xml和SqlMapConfig.xml都在config包下&ndash;&gt;-->
+<!--&lt;!&ndash;                   name：取别名&ndash;&gt;-->
+<!--&lt;!&ndash;        &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <property name="configLocation" value="classpath:mybatis-config.xml"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash; 配置数据源 ref：引用&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <property name="dataSource" ref="dataSource"></property>&ndash;&gt;-->
+<!--&lt;!&ndash;    </bean>&ndash;&gt;-->
+<!--    -->
+<!--</beans>-->
 

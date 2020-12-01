@@ -1,4 +1,4 @@
-package controller.common;
+package com.company.controller.common;
 
 import java.io.Serializable;
 

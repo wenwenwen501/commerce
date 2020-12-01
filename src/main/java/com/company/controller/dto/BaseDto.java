@@ -1,4 +1,4 @@
-package controller.dto;
+package com.company.controller.dto;
 
 import java.util.Date;
 
