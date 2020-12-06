@@ -2,9 +2,10 @@ package com.company.controller;
 
 import com.company.controller.common.ResponseVo;
 import com.company.controller.dto.BaseDto;
+import com.company.service.MvcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.company.service.Mvcservice;
+import com.company.service.MvcService;
 
 
 @RestController
@@ -12,11 +13,11 @@ import com.company.service.Mvcservice;
 public class mvccontroller {
 
     @Autowired
-    private Mvcservice mvcservice;
+    private MvcService mvcService;
 
     @PostMapping(value = "/update.do")
     private ResponseVo getRespose(@RequestBody BaseDto baseDto){
-        mvcservice.insert(baseDto);
+        mvcService.insert(baseDto);
         return new ResponseVo("10000", "success", "httpok");
     }
 

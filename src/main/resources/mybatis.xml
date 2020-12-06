@@ -1,24 +1,24 @@
-<!--<?xml version="1.0" encoding="UTF-8" ?>-->
-<!--<!DOCTYPE configuration-->
-<!--        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"-->
-<!--        "http://mybatis.org/dtd/mybatis-3-config.dtd">-->
-<!--&lt;!&ndash;此处以上部分  是查看mybatis文档   搜索mybatis-3-config.dtd复制的   声明部分&ndash;&gt;-->
-<!--<configuration>-->
-<!--    &lt;!&ndash;配置mybatis运行环境&ndash;&gt;-->
-<!--    <environments default="mysql">-->
-<!--        <environment id="mysql">-->
-<!--            <transactionManager type="JDBC" />-->
-<!--            <dataSource type="POOLED">-->
-<!--                <property name="driver" value="com.mysql.jdbc.Driver"/>-->
-<!--                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mvc"/>-->
-<!--                <property name="username" value="root"/>-->
-<!--                <property name="password" value="liwen1314"/>-->
-<!--            </dataSource>-->
-<!--        </environment>-->
-<!--    </environments>-->
-<!--    &lt;!&ndash;注册映射文件&ndash;&gt;-->
-<!--    <mappers>-->
-<!--        <mapper resource="com.compang.controller.mapper/*.xml"/>-->
-<!--    </mappers>-->
-<!--</configuration>-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--此处以上部分  是查看mybatis文档   搜索mybatis-3-config.dtd复制的   声明部分-->
+<configuration>
+    <!--配置mybatis运行环境-->
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mvc"/>
+                <property name="username" value="root"/>
+                <property name="password" value="liwen1314"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--注册映射文件-->
+    <mappers>
+        <mapper resource="com.compang.controller.mapper/*.xml"/>
+    </mappers>
+</configuration>
 

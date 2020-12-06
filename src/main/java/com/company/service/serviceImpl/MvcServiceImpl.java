@@ -2,12 +2,12 @@ package com.company.service.serviceImpl;
 
 import com.company.controller.dto.BaseDto;
 import com.company.mapper.MvcMapper;
+import com.company.service.MvcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.company.service.Mvcservice;
 
 @Service
-public class MvcServiceImpl implements Mvcservice {
+public class MvcServiceImpl implements MvcService {
 
     @Autowired
     private MvcMapper mvcMapper;

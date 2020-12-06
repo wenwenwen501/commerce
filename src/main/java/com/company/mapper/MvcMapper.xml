@@ -7,6 +7,6 @@
     <insert id="insert" parameterType="com.company.service.query.baseQuery">
         insert into common(create_by,create_date,last_update_by,last_update_date)
         values
-        (#{createBy},#{createDate},#{lastUpdateBy},#{lastUpateDate})
+        (#{createBy},#{createDate},#{lastUpdateBy},#{lastUpdateDate})
     </insert>
 </mapper>

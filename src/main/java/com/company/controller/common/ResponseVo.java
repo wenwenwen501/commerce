@@ -15,7 +15,6 @@ public class ResponseVo<T> implements Serializable{
 
     }
 
-
     public String getCode() {
         return this.code;
     }
