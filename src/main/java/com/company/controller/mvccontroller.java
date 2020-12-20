@@ -32,6 +32,8 @@ public class mvccontroller {
     @GetMapping(value = "/redis.do")
     private ResponseVo helloRedis() throws Exception {
         redisService.set("redis","Redis Success",1000000);
+        String key = (String) redisService.get("redis",String.class);
+        System.out.println(key);
         return new ResponseVo("10000", "success", redisService.get("redis",String.class)
         );
     }
