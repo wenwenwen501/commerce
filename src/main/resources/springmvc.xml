@@ -26,7 +26,8 @@
 <!--    <import resource="redis-context.xml"/>-->
 
 <!--    引入redis集群-->
-    <import resource="redis_cluster.xml"/>
+<!--    <import resource="redis_cluster.xml"/>-->
 
+    <import resource="rocket-mq.xml"/>
 
 </beans>

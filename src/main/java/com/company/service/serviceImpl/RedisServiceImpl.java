@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 @SuppressWarnings({"unchecked"})
-@Service
+//@Service
 public class RedisServiceImpl<T> implements RedisService<T> {
     @SuppressWarnings("unused")
     private static Log logger = LogFactory.getLog(RedisServiceImpl.class);

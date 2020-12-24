@@ -14,32 +14,32 @@
 <!--    <context:component-scan base-package="com.company"></context:component-scan>-->
     <!-- 引入jdbc配置文件 -->
 
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:properties/db.properties</value>
-            </list>
-        </property>
-    </bean>
-    <!-- dataSource 配置 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-          init-method="init" destroy-method="close">
-        <!-- 基本属性 url、user、password -->
-        <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-    </bean>
-    <!-- mybatis文件配置，扫描所有mapper文件 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath*:com/company/mapper/*.xml" />
-    </bean>
+<!--    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+<!--        <property name="locations">-->
+<!--            <list>-->
+<!--                <value>classpath:properties/db.properties</value>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+<!--    &lt;!&ndash; dataSource 配置 &ndash;&gt;-->
+<!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"-->
+<!--          init-method="init" destroy-method="close">-->
+<!--        &lt;!&ndash; 基本属性 url、user、password &ndash;&gt;-->
+<!--        <property name="driverClassName" value="${jdbc.driver}" />-->
+<!--        <property name="url" value="${jdbc.url}" />-->
+<!--        <property name="username" value="${jdbc.username}" />-->
+<!--        <property name="password" value="${jdbc.password}" />-->
+<!--    </bean>-->
+<!--    &lt;!&ndash; mybatis文件配置，扫描所有mapper文件 &ndash;&gt;-->
+<!--    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+<!--        <property name="dataSource" ref="dataSource" />-->
+<!--        <property name="mapperLocations" value="classpath*:com/company/mapper/*.xml" />-->
+<!--    </bean>-->
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.company.mapper" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-    </bean>
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+<!--        <property name="basePackage" value="com.company.mapper" />-->
+<!--        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />-->
+<!--    </bean>-->
 
 <!--    &lt;!&ndash; 对dataSource 数据源进行事务管理 &ndash;&gt;-->
 <!--    <bean id="transactionManager"-->
