@@ -1,11 +1,7 @@
 package com.company.controller;
 
 import com.company.controller.common.ResponseVo;
-import com.company.controller.dto.BaseDto;
-import com.company.rocketmq.Rcconsumer;
 import com.company.rocketmq.Rcproducer;
-import com.company.service.MvcService;
-import com.company.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +18,6 @@ public class mvccontroller {
     @Autowired
     @Qualifier("rcproducer")
     Rcproducer rcproducer;
-    @Autowired
-    @Qualifier("rcconsumer")
-    Rcconsumer rcconsumer;
 
 //    @PostMapping(value = "/update.do")
 //    private ResponseVo getRespose(@RequestBody BaseDto baseDto){
@@ -51,16 +44,6 @@ public class mvccontroller {
     private ResponseVo sendrocketmq(){
         try{
             rcproducer.sendmsg();
-        }catch (Exception e){
-            return new ResponseVo("10001","fail",e);
-        }
-        return new ResponseVo("10000","success","rqconsumer");
-    }
-
-    @GetMapping(value = "/Rqconsumer.do")
-    private ResponseVo getrocketmq(){
-        try{
-            rcconsumer.getmsg();
         }catch (Exception e){
             return new ResponseVo("10001","fail",e);
         }
