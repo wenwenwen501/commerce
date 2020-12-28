@@ -12,8 +12,8 @@ public class DefaultMQPushConsumerLazyInit extends DefaultMQPushConsumer impleme
         try {
             if (event.getApplicationContext().getParent() == null){
 //                System.out.println("rocketmq consumer execute start method ...");
-                this.start();
             }
+                this.start();
         } catch (Exception e) {
             //调用start失败，导致rocket启动失败
             System.out.println(e.getMessage());
