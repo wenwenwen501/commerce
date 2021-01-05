@@ -40,6 +40,7 @@
 <!--        <property name="basePackage" value="com.company.mapper" />-->
 <!--        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />-->
 <!--    </bean>-->
+    <import resource="elastic-job.xml"/>
 
 <!--    &lt;!&ndash; 对dataSource 数据源进行事务管理 &ndash;&gt;-->
 <!--    <bean id="transactionManager"-->
