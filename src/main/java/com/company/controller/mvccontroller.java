@@ -2,6 +2,7 @@ package com.company.controller;
 
 import com.company.controller.common.ResponseVo;
 import com.company.controller.dto.BaseDto;
+import com.company.kafka.service.KafkaProducerService;
 import com.company.service.MvcService;
 import com.company.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class mvccontroller {
     private MvcService mvcService;
     @Autowired
     RedisService redisService;
+    @Autowired
+    KafkaProducerService kafkaProducerService;
+
 
     @PostMapping(value = "/update.do")
     private ResponseVo getRespose(@RequestBody BaseDto baseDto){
@@ -36,6 +40,12 @@ public class mvccontroller {
         System.out.println(key);
         return new ResponseVo("10000", "success", redisService.get("redis",String.class)
         );
+    }
+
+    @GetMapping(value = "/kafka.do")
+    private ResponseVo kafkaTest() {
+        kafkaProducerService.getProducer();
+        return new ResponseVo("10000", "success","kafka success");
     }
 
 }

@@ -28,5 +28,7 @@
 <!--    引入redis集群-->
     <import resource="redis_cluster.xml"/>
 
+    <import resource="kafka_producer.xml"/>
+
 
 </beans>
