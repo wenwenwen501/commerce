@@ -29,6 +29,7 @@
     <import resource="redis_cluster.xml"/>
 
     <import resource="kafka_producer.xml"/>
+    <import resource="kafka_consumer.xml"/>
 
 
 </beans>
